@@ -68,12 +68,13 @@ WHERE (fechaInicio BETWEEN '2018/03/31' AND '2018/06/30') OR (fechaInicio BETWEE
 	  e.RFC = t.RFC
  GROUP BY e.RFC
 
-
-
- SELECT nombre, genero, fechaIngreso
- FROM Empleado emp JOIN trabajar t ON t.CURP = emp.CURP
- WHERE t.RFC = 'AER240303O23'
-
+  /*
+  * Consuta I
+  */
+  SELECT emp.CURP, emp.nombre, col.numHoras, col.numProy
+  FROM Empleado emp INNER JOIN colaborar col ON
+       emp.CURP = col.CURP
+  WHERE col.numHoras >= 20
 
 
 
