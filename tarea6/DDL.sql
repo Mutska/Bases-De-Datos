@@ -15,7 +15,7 @@ GO
 CREATE DATABASE Tarea6
 ON
 ( NAME = Tarea6,
-  FILENAME = '/fbd/fundamentos/Tarea6.mdf',
+  FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\Tarea6.mdf',
   SIZE = 10,
   MAXSIZE = UNLIMITED,
   FILEGROWTH = 5 )
@@ -23,7 +23,7 @@ ON
 LOG ON
 
 ( NAME = 'Tarea6_Log',
-  FILENAME = '/fbd/fundamentos/Tarea6_Log.ldf',
+  FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\Tarea6_Log.ldf',
   SIZE = 5MB,
   MAXSIZE = 100MB,
   FILEGROWTH = 5MB );
