@@ -71,11 +71,15 @@ WHERE (fechaInicio BETWEEN '2018/03/31' AND '2018/06/30') OR (fechaInicio BETWEE
   /*
   * Consuta I
   */
-  SELECT emp.CURP, emp.nombre, col.numHoras, col.numProy
-  FROM Empleado emp INNER JOIN colaborar col ON
-       emp.CURP = col.CURP
-  WHERE col.numHoras >= 20
 
+  SELECT e.*
+  FROM (SELECT emp.CURP, COUNT(col.numProy) numProyectos
+		FROM Empleado emp INNER JOIN colaborar col ON 
+		   emp.CURP = col.CURP
+		GROUP BY emp.CURP
+		HAVING COUNT(col.numProy) > 1  ) AS a JOIN colaborar c ON
+		a.CURP = c.CURP JOIN Empleado e ON e.CURP = a.CURP
+  WHERE c.numHoras > 2000
 
 
 SELECT *
