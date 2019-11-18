@@ -8,4 +8,7 @@ select e.razonSocial, m.CURP, max(t.salarioQuincenal)  from Empresa e join Traba
  
 --Ejercicio N
 select p.numProy, p.nombre, p.fechaFin, p.fechaInicio, p.RFC from Colaborar c join Dirigir D on c.CURP = d.CURP join Proyecto p  on p.numProy = c.numProy 
- 
+
+--Ejercicio q 
+select e.* from Empleado e left join Colaborar c on c.CURP = e.CURP where  c.CURP IS NULL
+
