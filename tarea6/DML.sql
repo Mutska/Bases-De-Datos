@@ -12,7 +12,7 @@ FROM dbo.Empleado empdo INNER JOIN dbo.trabajar trbj ON
 WHERE razonSocial = 'Ball Corporation'
 
 /*
- * Consulta B INCOMPLETA
+ * Consulta B 
  */
 SELECT empdo.CURP, empdo.nombre, empdo.ciudad, empr.ciudad
 
@@ -40,6 +40,14 @@ FROM Empleado e INNER JOIN trabajar t ON
 	  dirigir d ON d.CURP = e.CURP INNER JOIN
 	  Empresa emp ON emp.RFC = d.RFC
 WHERE (fechaInicio BETWEEN '2018/03/31' AND '2018/06/30') OR (fechaInicio BETWEEN '2018/09/30' AND '2019/01/01')
+
+/*
+ * Consulta E
+ */
+SELECT emp.CURP
+FROM Empleado e INNER JOIN Empleado emp
+     ON e.CURP = emp.supervisor
+WHERE e.ciudad = emp.ciudad AND e.calle = emp.calle
 
 
 /*
@@ -203,8 +211,8 @@ FROM
 	ORDER BY A.razonSocial;
 
 /* 
-* Consulta S
-*/
+ * Consulta S
+ */
 --La vista s es una proyección del join de empleado, colaborar y proyecto
 IF  EXISTS (SELECT * FROM sys.views WHERE object_id = OBJECT_ID(N'[dbo].[s]'))
 DROP VIEW [dbo].[s]
