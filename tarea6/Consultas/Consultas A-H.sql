@@ -29,9 +29,9 @@ WHERE empdo.ciudad != empr.ciudad
 	  dirigir d ON d.CURP = e.CURP
  WHERE genero = 'F'
 
- /*
-  * Consulta D
-  */
+/*
+ * Consulta D
+ */
 SELECT *
 FROM Empleado e INNER JOIN trabajar t ON
 	  e.CURP = t.CURP INNER JOIN 
@@ -50,9 +50,9 @@ WHERE (fechaInicio BETWEEN '2018/03/31' AND '2018/06/30') OR (fechaInicio BETWEE
 	  Empleado emp ON emp.CURP = t.CURP
  GROUP BY e.RFC, genero, YEAR(fechaIngreso)
 
- /*
-  * Consulta G
-  */
+/*
+ * Consulta G
+ */
   SELECT emp.CURP, emp.nombre
   FROM Empleado emp INNER JOIN trabajar t ON 
 	   emp.CURP = t.CURP INNER JOIN
@@ -60,23 +60,58 @@ WHERE (fechaInicio BETWEEN '2018/03/31' AND '2018/06/30') OR (fechaInicio BETWEE
 	   Proyecto p ON c.numProy = p.numProy
  WHERE p.RFC != t.RFC
 
- /*
-  * Consulta H
-  */
+/*
+ * Consulta H
+ */
  SELECT e.RFC, MAX(salarioQuincenal) Maximo, MIN(salarioQuincenal) Minimo, SUM(salarioQuincenal) Total
  FROM Empresa e INNER JOIN trabajar t ON
 	  e.RFC = t.RFC
  GROUP BY e.RFC
 
+/*
+ * Consuta I
+ */
+
+  SELECT e.*
+  FROM (SELECT emp.CURP, COUNT(col.numProy) numProyectos
+		FROM Empleado emp INNER JOIN colaborar col ON 
+		   emp.CURP = col.CURP
+		GROUP BY emp.CURP
+		HAVING COUNT(col.numProy) > 1  ) AS a JOIN colaborar c ON
+		a.CURP = c.CURP JOIN Empleado e ON e.CURP = a.CURP
+  WHERE c.numHoras > 2000
+
+/*
+ * Consulta K
+ */
+SELECT e.razonSocial, emp.nombre, MAX(t.salarioQuincenal) maxSalario
+FROM Empleado emp JOIN trabajar t ON
+     emp.CURP = t.CURP JOIN Empresa e ON
+	 e.RFC = t.RFC
+GROUP BY e.razonSocial, emp.nombre
+
+/*
+ * Consulta L
+ */
+ SELECT emp.CURP
+ FROM  (SELECT e.RFC, AVG(salarioQuincenal) promedio
+		FROM trabajar t JOIN Empresa e ON
+			 t.RFC = e.RFC JOIN
+	         Empleado emp ON emp.CURP = t.CURP
+	    GROUP BY e.RFC ) as promedio JOIN trabajar t ON
+		t.RFC = promedio.RFC JOIN Empleado emp ON 
+		emp.CURP = t.CURP 
+ WHERE t.salarioQuincenal > promedio.promedio 
 
 
- SELECT nombre, genero, fechaIngreso
- FROM Empleado emp JOIN trabajar t ON t.CURP = emp.CURP
- WHERE t.RFC = 'AER240303O23'
+/*
+ * Consulta M
+ * Sólo suelta el conteo de empleados por compañia
+ */
+SELECT totalEmpleados.RFC, MIN(totalEmpleados.totalEmpleados) minimo
+FROM (SELECT t.RFC, COUNT(t.CURP) totalEmpleados 
+      FROM Empresa e JOIN trabajar t ON
+	       e.RFC = t.RFC
+	  GROUP BY t.RFC) AS totalEmpleados
+GROUP BY totalEmpleados.RFC
 
-
-
-
-SELECT *
-FROM dbo.Empleado e
-WHERE e.paterno LIKE '[ADGJLPR]%'
