@@ -104,8 +104,14 @@ GROUP BY e.razonSocial, emp.nombre
  WHERE t.salarioQuincenal > promedio.promedio 
 
 
+/*
+ * Consulta M
+ * Sólo suelta el conteo de empleados por compañia
+ */
+SELECT totalEmpleados.RFC, MIN(totalEmpleados.totalEmpleados) minimo
+FROM (SELECT t.RFC, COUNT(t.CURP) totalEmpleados 
+      FROM Empresa e JOIN trabajar t ON
+	       e.RFC = t.RFC
+	  GROUP BY t.RFC) AS totalEmpleados
+GROUP BY totalEmpleados.RFC
 
-
-SELECT *
-FROM dbo.Empleado e
-WHERE e.paterno LIKE '[ADGJLPR]%'
