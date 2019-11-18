@@ -12,7 +12,8 @@ DROP DATABASE Tarea6;
 END;
 GO
 --Creamos la base
-CREATE DATABASE Tarea6
+CREATE DATABASE Tarea6;
+/*
 ON
 ( NAME = Tarea6,
   FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\Tarea6.mdf',
@@ -27,7 +28,7 @@ LOG ON
   SIZE = 5MB,
   MAXSIZE = 100MB,
   FILEGROWTH = 5MB );
-
+*/
 PRINT N'Base de datos creada correctamente';
 GO
 --CREAMOS TABLAS DE LA BASE DE DATOS

@@ -1001,3 +1001,7 @@ insert into Trabajar (CURP, RFC, fechaIngreso, salarioQuincenal) values ('TOSP19
 insert into Trabajar (CURP, RFC, fechaIngreso, salarioQuincenal) values ('PAWT1997110MOKLAH7', 'YAT832333R00', '17/03/2016', '$100446.30');
 insert into Trabajar (CURP, RFC, fechaIngreso, salarioQuincenal) values ('MCPE1997514MAZIEL2', 'OCE568962A49', '06/10/1979', '$66946.31');
 insert into Trabajar (CURP, RFC, fechaIngreso, salarioQuincenal) values ('MAKC19701012MCAGEE', 'NAT472024I60', '21/08/1969', '$13318.95');
+--tuplas insertadas ad hoc
+insert into Trabajar (CURP, RFC, fechaIngreso, salarioQuincenal) values ('CHAS1996629MFLEYA5', 'NEW774554 86', '03/11/2019', '$41000.00');
+insert into Trabajar (CURP, RFC, fechaIngreso, salarioQuincenal) values ('CHAS1996629MFLEYA5', 'FRA730851N60', '18/03/2015', '$8000.00');
+insert into Trabajar (CURP, RFC, fechaIngreso, salarioQuincenal) values ('CHAS1996629MFLEYA5', 'NAT472024I60', '15/02/2004', '$10000.67');
