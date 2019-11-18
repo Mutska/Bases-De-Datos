@@ -115,3 +115,27 @@ FROM (SELECT t.RFC, COUNT(t.CURP) totalEmpleados
 	  GROUP BY t.RFC) AS totalEmpleados
 GROUP BY totalEmpleados.RFC
 
+
+/*
+ * Consulta P
+ */
+SELECT emp.CURP
+
+FROM Empleado emp JOIN colaborar c ON
+	 emp.CURP = c.CURP JOIN Proyecto p ON
+	 p.numProy = c.numProy
+
+WHERE c.fechaFin < p.fechaFin
+
+
+/*
+ * Consulta Q
+ */
+SELECT CURP
+FROM Empleado
+EXCEPT
+SELECT emp.CURP
+FROM Empleado emp INNER JOIN colaborar c
+     ON emp.CURP = c.CURP
+     
+
