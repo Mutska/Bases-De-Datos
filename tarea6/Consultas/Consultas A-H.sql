@@ -114,7 +114,6 @@ GROUP BY e.razonSocial, emp.nombre
 /*
  * Consulta M
  */
-
 SELECT emp.*
 FROM   (SELECT RFC
 
@@ -134,14 +133,6 @@ FROM   (SELECT RFC
 		INNER JOIN Empresa e ON e.RFC = minEmpresa.RFC
 		JOIN trabajar t ON t.RFC = e.RFC
 		INNER JOIN Empleado emp ON t.CURP = emp.CURP
-
-
-
-(SELECT MIN(totalEmpleados.totalEmpleados) minimo
-FROM (SELECT t.RFC, COUNT(t.CURP) totalEmpleados 
-      FROM Empresa e JOIN trabajar t ON
-	              e.RFC = t.RFC
-	  GROUP BY t.RFC) AS totalEmpleados)
 
 
 /*
