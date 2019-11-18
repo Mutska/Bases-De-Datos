@@ -146,14 +146,6 @@ FROM   (SELECT RFC
 		INNER JOIN Empleado emp ON t.CURP = emp.CURP
 
 
-
-(SELECT MIN(totalEmpleados.totalEmpleados) minimo
-FROM (SELECT t.RFC, COUNT(t.CURP) totalEmpleados 
-      FROM Empresa e JOIN trabajar t ON
-	              e.RFC = t.RFC
-	  GROUP BY t.RFC) AS totalEmpleados)
-
-
 /*
  * Consulta N
  */
