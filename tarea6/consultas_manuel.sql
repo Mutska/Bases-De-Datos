@@ -3,51 +3,28 @@ USE Tarea6;
  * ciudad en que tienen sus instalaciones.
  */
 
-SELECT A.RFC, A.razonSocial, A.ciudad as ciudad_empresa, D.nombre, D.paterno, D.materno, D.ciudad as ciudad_empleado
+
+SELECT em.*
 FROM 
+	Empresa em 
+	INNER JOIN
 	(
-	SELECT em.*
+	SELECT B.RFC, COUNT(B.CURP) as num_empleados
 	FROM 
-		Empresa em 
-		INNER JOIN
 		(
-		SELECT B.RFC, COUNT(B.CURP) as num_empleados
-		FROM 
-			(
-			SELECT Em.*, e.CURP, e.nombre as nombre_empleado, e.paterno, e.materno, e.ciudad as ciudad_empleado
-			FROM Empleado e 
-			INNER JOIN trabajar t
-			ON e.CURP = t.CURP
-			INNER JOIN Empresa em 
-			ON t.RFC = em.RFC
-			WHERE e.ciudad = em.ciudad
-			) B
-		GROUP BY B.RFC
-		) C
-		ON C.RFC = em.RFC
-	WHERE C.num_empleados >= 2
-	) A --La información de las empresas que tienen dos empleados trabajando en la misma ciudad que ellas
-	INNER JOIN trabajar t 
-	ON A.RFC = t.RFC
-	INNER JOIN 
-	(
-	SELECT e.*
-	FROM 
-		Empleado e 
-		INNER JOIN
-		(
-			SELECT Em.*, e.CURP, e.nombre as nombre_empleado, e.paterno, e.materno, e.ciudad as ciudad_empleado
-			FROM Empleado e 
-			INNER JOIN trabajar t
-			ON e.CURP = t.CURP
-			INNER JOIN Empresa em 
-			ON t.RFC = em.RFC
-			WHERE e.ciudad = em.ciudad
+		SELECT Em.*, e.CURP, e.nombre as nombre_empleado, e.paterno, e.materno, e.ciudad as ciudad_empleado
+		FROM Empleado e 
+		INNER JOIN trabajar t
+		ON e.CURP = t.CURP
+		INNER JOIN Empresa em 
+		ON t.RFC = em.RFC
+		WHERE e.ciudad = em.ciudad
 		) B
-		ON e.CURP = B.CURP
-	) D --Los empleados que trabajan en la misma ciudad que su empresa
-	ON t.CURP = D.CURP
-	ORDER BY A.razonSocial;
+		GROUP BY B.RFC
+	) C
+	ON C.RFC = em.RFC
+	WHERE C.num_empleados >= 2
+	ORDER BY em.razonSocial;
 
 /* s. Proyecto que más empleados requiere (o requirió) y el número de horas que éstos le
 * dedicaron.
@@ -91,18 +68,15 @@ FROM
 /* t. Empleados que comenzaron a colaborar en proyectos en la misma fecha de su cumpleaños.
  * 
  */
-
-SELECT e.nombre, e.paterno, e.materno, e.nacimiento, c.fechaInicio as fecha_inicio_colaboracion, p.nombre as nombre_proyecto
+SELECT e.*
 FROM Empleado e
 INNER JOIN colaborar c
 ON c.CURP = e.CURP
-INNER JOIN Proyecto p 
-ON p.numProy = c.numProy
 WHERE DATEPART(MONTH, e.nacimiento) = DATEPART(MONTH, c.fechaInicio) AND DATEPART(DAY, e.nacimiento) = DATEPART(DAY, c.fechaInicio);
 
 /* u. Obtener una lista del número de empleados que supervisa cada supervisor.
  */
-SELECT e.nombre, e.paterno, e.materno, B.numero_supervisados
+SELECT e.*, B.numero_supervisados
 FROM Empleado e
 INNER JOIN
 	(
@@ -113,7 +87,7 @@ INNER JOIN
 ON B.supervisor = e.CURP;
 
 -- v. Obtener una lista de los directores de más de 50 años
-SELECT e.CURP, nombre, paterno, materno, nacimiento,
+SELECT e.*,
        floor(DATEDIFF(day,nacimiento,getdate())/365.25) edad
 FROM Empleado e
 INNER JOIN dirigir d
@@ -134,33 +108,58 @@ WHERE e.paterno LIKE '[ADGJLPR]%'
  * aquellos proyectos que hayan iniciado en diciembre.
  */
 
+SELECT A.RFC, A.numProy, COUNT(A.CURP) as numero_empleados
+FROM 
+	(
+	SELECT em.RFC, p.numProy, e.CURP, p.fechaInicio
+	FROM Empresa em 
+	INNER JOIN 
+	Proyecto p 
+	ON p.RFC = em.RFC
+	INNER JOIN 
+	colaborar c 
+	ON c.numProy = p.numProy
+	INNER JOIN 
+	Empleado e 
+	ON e.CURP = c.CURP
+	WHERE DATEPART(MONTH, p.fechaInicio) = 12
+	) A
+GROUP BY A.RFC, A.numProy
 
 /*
 y. Crea una vista con la información de los empleados y compañías en que trabajan, de aquellos
 empleados que lo hagan en al menos tres compañías diferentes.
 */
-
 IF  EXISTS (SELECT * FROM sys.views WHERE object_id = OBJECT_ID(N'[dbo].[V]'))
 DROP VIEW [dbo].[V]
 GO
 CREATE VIEW dbo.V 
 AS 
-SELECT e.*, em.RFC, em.razonSocial, em.ciudad as ciudad_empresa, em.calle as calle_empresa, em.num as num_empresa, em.cp as cp_empresa
-FROM dbo.Empleado e 
-INNER JOIN dbo.trabajar t
-ON e.CURP = t.CURP
-INNER JOIN dbo.Empresa em 
-ON t.RFC = em.RFC;
-GO
-SELECT V.*
-FROM V
+SELECT e.*, em.RFC, em.razonSocial, em.ciudad as ciudad_empresa, em.cp as cp_empresa, em.calle as calle_empresa, em.num as num_empresa
+FROM 
+Empleado e
 INNER JOIN
 (
-SELECT CURP, COUNT(CURP) as numero_empresas
-FROM dbo.V 
-GROUP BY CURP
+SELECT A.CURP, COUNT(A.RFC) as numero_empresas
+FROM 
+	(
+	SELECT e.CURP, em.RFC
+	FROM dbo.Empleado e 
+	INNER JOIN dbo.trabajar t
+	ON e.CURP = t.CURP
+	INNER JOIN dbo.Empresa em 
+	ON t.RFC = em.RFC
+	) A -- numero de empresas en las que trabaja cada empleado
+GROUP BY A.CURP
 )B 
-ON B.CURP = V.CURP
-WHERE B.numero_empresas >= 3;
-
+ON B.CURP = e.CURP
+INNER JOIN
+trabajar t 
+ON t.CURP = B.CURP
+INNER JOIN
+Empresa em 
+ON em.RFC = t.RFC
+WHERE B.numero_empresas >= 3
+GO
+SELECT * FROM V;
 
