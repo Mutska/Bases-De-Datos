@@ -1,5 +1,5 @@
 CREATE TABLE Persona (
-  idPersona int PRIMARY KEY IDENTITY(1, 1),
+  idPersona int PRIMARY KEY AUTO_INCREMENT,
   nombre nvarchar(255) NOT NULL,
   paterno nvarchar(255) NOT NULL,
   materno nvarchar(255) NOT NULL,
@@ -10,19 +10,20 @@ CREATE TABLE Persona (
   numInterno int NOT NULL,
   numExterno int NOT NULL,
   fechaNacmiento date CHECK (DATEDIFF(year, fechaNacimiento, GETDATE()) > 18) NOT NULL,
-  correoElectronico nvarchar(255),
+  correoElectronico nvarchar(255) NOT NULL UNIQUE,
 
   RFC nvarchar(255) UNIQUE NOT NULL,
   CURP nvarchar(255) UNIQUE NOT NULL,
-  tipoEmpleado nvarchar(255),
-  salario int,
+  tipoEmpleado nvarchar(255) CHECK (tipoEmpleado IN ("Taquero", "Tortillero", "Parrillero", "Mesero", "Cajero", "Repartidor")),
+  salario int ,
   fechaContratacion date,
   tipoSangre nvarchar(255) CHECK (tipoSangre IN ("O+", "O-", "A+" "A-", "B+", "B-", "AB+", "AB-")),
   transporte nvarchar(255),
   licencia int,
 
   puntos int,
-  esEmpleado int NOT NULL,
+
+  esEmpleado int NOT NULL CHECK(),
   esCliente int NOT NULL,
 
   idSucursal int UNIQUE,
@@ -30,71 +31,67 @@ CREATE TABLE Persona (
 GO
 
 CREATE TABLE Bono (
-  numBono int PRIMARY KEY IDENTITY(1, 1),
-  monto int,
-  fechaEntrega date,
-  idPersona int
+  numBono int PRIMARY KEY AUTO_INCREMENT,
+  monto int NOT NULL,
+  fechaEntrega date NOT NULL,
+  idPersona int NOT NULL
 )
-GO
 
 CREATE TABLE Sucursal (
-  idSucursal int PRIMARY KEY IDENTITY(1, 1)
+  idSucursal int PRIMARY KEY AUTO_INCREMENT
 )
-GO
 
 CREATE TABLE Proveedor (
-  idProveedor int PRIMARY KEY IDENTITY(1, 1),
-  nombre nvarchar(255),
-  telefono int,
-  categoria nvarchar(255),
-  estado nvarchar(255),
-  CP int,
-  calle nvarchar(255),
-  municipio nvarchar(255),
-  numExterno int,
+  idProveedor int PRIMARY KEY AUTO_INCREMENT,
+  nombre nvarchar(255) NOT NULL,
+  telefono int NOT NULL,
+  categoria nvarchar(255) CHECK (categoria IN("Carnes", "Verduras", "Fruta", "Refrescos", "Harina")) NOT NULL,
+  estado nvarchar(255) NOT NULL,
+  CP int NOT NULL,
+  calle nvarchar(255) NOT NULL,
+  municipio nvarchar(255) NOT NULL,
+  numExterno int NOT NULL,
   numInterno int
 )
-GO
 
 CREATE TABLE Proveer (
-  idSucursal int,
-  idProveedor int,
-  monto int,
-  fechaPedido datetime
+  idSucursal int NOT NULL,
+  idProveedor int NOT NULL,
+  monto int NOT NULL,
+  fechaPedido datetime NOT NULL
 )
-GO
 
 CREATE TABLE Productos (
-  idProducto int PRIMARY KEY IDENTITY(1, 1),
-  precio int,
-  cantidad int,
-  fechaCompra datetime,
-  marca nvarchar(255),
-  fechaCaducidad datetime,
-  idSucursal int
+  idProducto int PRIMARY KEY AUTO_INCREMENT,
+  precio int NOT NULL,
+  cantidad int NOT NULL,
+  fechaCompra datetime NOT NULL,
+  marca nvarchar(255) NOT NULL,
+  fechaCaducidad datetime NOT NULL,
+  idSucursal int NOT NULL
 )
 GO
 
 CREATE TABLE Articulos (
-  idArticulo int PRIMARY KEY IDENTITY(1, 1),
-  precio int,
-  cantidad int,
-  fechaCompra datetime,
-  marca nvarchar(255),
-  idSucursal int
+  idArticulo int PRIMARY KEY AUTO_INCREMENT,
+  precio int NOT NULL,
+  cantidad int NOT NULL,
+  fechaCompra datetime NOT NULL,
+  marca nvarchar(255) NOT NULL,
+  idSucursal int NOT NULL
 )
 GO
 
 CREATE TABLE Tener (
-  idPlatillo int,
-  idSalsa int,
-  idProducto int,
+  idPlatillo int NOT NULL,
+  idSalsa int NOT NULL,
+  idProducto int NOT NULL,
   cantidad int
 )
 GO
 
 CREATE TABLE Platillo (
-  idPlatillo int PRIMARY KEY IDENTITY(1, 1),
+  idPlatillo int PRIMARY KEY AUTO_INCREMENT,
   nombre nvarchar(255),
   precio int
 )
@@ -107,7 +104,7 @@ CREATE TABLE Recomendar (
 GO
 
 CREATE TABLE Salsa (
-  idSalsa int PRIMARY KEY IDENTITY(1, 1),
+  idSalsa int PRIMARY KEY AUTO_INCREMENT,
   nombre nvarchar(255),
   precio int,
   nivelPicor nvarchar(255),
