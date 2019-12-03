@@ -1,4 +1,5 @@
-USE Taqueria20201;
+
+---Llenado de la tabla Platillo
 ALTER TABLE Platillo CHECK CONSTRAINT ALL;
 SET IDENTITY_INSERT Platillo ON;
 insert into Platillo (idPlatillo, nombre, precio) values (1, 'Taco de Pastor', 10);
@@ -50,3 +51,4 @@ insert into Platillo (idPlatillo, nombre, precio) values (46, 'Costilla', 30);
 insert into Platillo (idPlatillo, nombre, precio) values (47, 'Coca Cola', 20);
 insert into Platillo (idPlatillo, nombre, precio) values (48, 'Boing', 20);
 insert into Platillo (idPlatillo, nombre, precio) values (49, 'Agua de Sabor', 15);
+SET IDENTITY_INSERT Platillo OFF;

@@ -1,4 +1,6 @@
-USE Taqueria20201;
+
+
+---Llenado de la tabla TelefonoSucursal
 ALTER TABLE TelefonoSucursal CHECK CONSTRAINT ALL;
 insert into TelefonoSucursal (idSucursal, telefono) values (1, '868-700-2669');
 insert into TelefonoSucursal (idSucursal, telefono) values (2, '222-171-9589');

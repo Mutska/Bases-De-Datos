@@ -1,4 +1,6 @@
-USE Taqueria20201;
+
+
+---Llenado de la tabla EstarSalsa
 ALTER TABLE EstarSalsa CHECK CONSTRAINT ALL;
 insert into EstarSalsa (noTicket, idSalsa) values (1, 100);
 insert into EstarSalsa (noTicket, idSalsa) values (2, 46);

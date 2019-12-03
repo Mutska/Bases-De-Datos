@@ -1,4 +1,6 @@
-USE Taqueria20201;
+
+
+---Llenado de la tabla Pedido
 ALTER TABLE Pedido CHECK CONSTRAINT ALL;
 SET DATEFORMAT dmy
 insert into Pedido (noTicket, costoTotal, fecha, idPersona) values (1, '$2021.85', '12/2/2012', 1820);

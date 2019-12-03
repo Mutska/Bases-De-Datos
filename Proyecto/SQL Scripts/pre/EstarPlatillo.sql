@@ -1,4 +1,5 @@
-USE Taqueria20201;
+
+---Llenado de la tabla EstarPlatillo
 ALTER TABLE EstarPlatillo CHECK CONSTRAINT ALL;
 insert into EstarPlatillo (noTicket, idPlatillo) values (1, 42);
 insert into EstarPlatillo (noTicket, idPlatillo) values (2, 15);

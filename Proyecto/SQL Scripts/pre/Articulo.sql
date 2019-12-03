@@ -1,4 +1,6 @@
-USE Taqueria20201;
+
+
+---Llenado de tabla Articulo
 ALTER TABLE Articulo CHECK CONSTRAINT ALL;
 SET IDENTITY_INSERT Articulo ON;
 SET DATEFORMAT dmy
@@ -1612,3 +1614,4 @@ insert into Articulo (idArticulo, nombre, precio, cantidad, fechaCompra, marca, 
 insert into Articulo (idArticulo, nombre, precio, cantidad, fechaCompra, marca, idSucursal) values (1608, 'Anaquel', '$453.05', 14, '19/2/2015', 'Nolan and Sons', 35);
 insert into Articulo (idArticulo, nombre, precio, cantidad, fechaCompra, marca, idSucursal) values (1609, 'Estante', '$356.65', 10, '2/11/2018', 'Romaguera-Schaefer', 35);
 insert into Articulo (idArticulo, nombre, precio, cantidad, fechaCompra, marca, idSucursal) values (1610, 'Licuadora', '$1280.08', 10, '16/1/2014', 'Pollich, Walker and Jenkins', 35);
+SET IDENTITY_INSERT Articulo OFF;

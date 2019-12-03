@@ -1,4 +1,6 @@
-USE Taqueria20201;
+
+
+--Llenado de la tabla Proveedor
 ALTER TABLE Proveedor CHECK CONSTRAINT ALL;
 SET IDENTITY_INSERT Proveedor ON;
 insert into Proveedor (idProveedor, nombre, Categoria, estado, CP, calle, municipio, numExterno, numInterno) values (1, 'Kshlerin, Morissette and Bergstrom', 'Verdura', 'South Carolina', '29220', 'Mandrake', 'Columbia', '735', 15);
@@ -201,3 +203,4 @@ insert into Proveedor (idProveedor, nombre, Categoria, estado, CP, calle, munici
 insert into Proveedor (idProveedor, nombre, Categoria, estado, CP, calle, municipio, numExterno, numInterno) values (198, 'Wunsch Inc', 'Fruta', 'Iowa', '51110', 'Lunder', 'Sioux City', '97', 2);
 insert into Proveedor (idProveedor, nombre, Categoria, estado, CP, calle, municipio, numExterno, numInterno) values (199, 'Breitenberg LLC', 'Verdura', 'North Carolina', '27150', 'Messerschmidt', 'Winston Salem', '6', 15);
 insert into Proveedor (idProveedor, nombre, Categoria, estado, CP, calle, municipio, numExterno, numInterno) values (200, 'Littel and Sons', 'Fruta', 'Florida', '32399', 'Prairieview', 'Tallahassee', '0151', 17);
+SET IDENTITY_INSERT Proveedor OFF;

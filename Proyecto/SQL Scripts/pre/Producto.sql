@@ -1,4 +1,6 @@
-USE Taqueria20201;
+
+
+---Llenado de tabla Producto
 ALTER TABLE Producto CHECK CONSTRAINT ALL;
 SET IDENTITY_INSERT Producto ON;
 SET DATEFORMAT dmy
@@ -1367,3 +1369,4 @@ insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, 
 insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, fechaCaducidad, idSucursal) values (1363, 'Limon', '$276.77', 92, '17/12/2019', 'Will-Dooley', '21/1/2020', 35);
 insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, fechaCaducidad, idSucursal) values (1364, 'Maracuya', '$232.44', 139, '31/12/2019', 'Dickinson, Tremblay and Fisher', '12/1/2020', 35);
 insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, fechaCaducidad, idSucursal) values (1365, 'Horchata', '$162.66', 124, '13/12/2019', 'Bauch-Feest', '30/1/2020', 35);
+SET IDENTITY_INSERT Producto OFF;

@@ -1,4 +1,6 @@
-USE Taqueria20201;
+
+
+---Llenado de tabla Proveer
 ALTER TABLE Proveer CHECK CONSTRAINT ALL;
 SET DATEFORMAT dmy
 insert into Proveer (idProveedor, idSucursal, monto, fechaPedido) values (1, 1, '$63206.62', '10/4/2018');

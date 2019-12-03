@@ -1,4 +1,6 @@
-USE Taqueria20201;
+
+
+---Llenado de la tabla Sucursal
 ALTER TABLE Sucursal CHECK CONSTRAINT ALL;
 SET IDENTITY_INSERT Sucursal ON;
 SET DATEFORMAT dmy
@@ -37,3 +39,4 @@ insert into Sucursal (idSucursal, estado, municipio, CP, calle, numInterno, numE
 insert into Sucursal (idSucursal, estado, municipio, CP, calle, numInterno, numExterno) values (33, 'Georgia', 'Lawrenceville', '30045', 'Artisan', 37, '7591');
 insert into Sucursal (idSucursal, estado, municipio, CP, calle, numInterno, numExterno) values (34, 'Virginia', 'Virginia Beach', '23459', 'Daystar', 47, '049');
 insert into Sucursal (idSucursal, estado, municipio, CP, calle, numInterno, numExterno) values (35, 'Utah', 'Salt Lake City', '84135', 'Daystar', 8, '181');
+SET IDENTITY_INSERT Sucursal OFF;

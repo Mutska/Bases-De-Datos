@@ -1,4 +1,5 @@
-USE Taqueria20201;
+
+---Llenado de la tabla Salsa
 ALTER TABLE Salsa CHECK CONSTRAINT ALL;
 SET IDENTITY_INSERT Salsa ON;
 insert into Salsa (idSalsa, nombre, presentacion, nivelPicor, precio) values (1, 'Salsa borracha', 'Cuarto', 'Bajo', 25);
@@ -121,3 +122,4 @@ insert into Salsa (idSalsa, nombre, presentacion, nivelPicor, precio) values (11
 insert into Salsa (idSalsa, nombre, presentacion, nivelPicor, precio) values (118, 'Salsa de chile habanero', 'Litro', 'Medio', 100);
 insert into Salsa (idSalsa, nombre, presentacion, nivelPicor, precio) values (119, 'Salsa de chile habanero', 'Litro', 'Alto', 100);
 insert into Salsa (idSalsa, nombre, presentacion, nivelPicor, precio) values (120, 'Salsa de chile habanero', 'Litro', 'Extremo', 100);
+SET IDENTITY_INSERT Salsa OFF;

@@ -1,4 +1,6 @@
-USE Taqueria20201;
+
+
+---Llenado de la tabla Recomendar
 ALTER TABLE Recomendar CHECK CONSTRAINT ALL;
 insert into Recomendar (idPlatillo, idSalsa) values (25, 81);
 insert into Recomendar (idPlatillo, idSalsa) values (21, 35);

@@ -1,4 +1,6 @@
-USE Taqueria20201;
+
+
+---Llenado de la tabla Persona
 ALTER TABLE Persona CHECK CONSTRAINT ALL;
 SET IDENTITY_INSERT Persona ON;
 SET DATEFORMAT dmy

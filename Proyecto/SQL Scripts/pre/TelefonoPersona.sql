@@ -1,4 +1,6 @@
-USE Taqueria20201;
+
+
+---Llenado de la tabla TelefonoPersona
 ALTER TABLE TelefonoPersona CHECK CONSTRAINT ALL;
 insert into TelefonoPersona (idPersona, telefono) values (1, '784-159-3234');
 insert into TelefonoPersona (idPersona, telefono) values (2, '001-886-7522');
