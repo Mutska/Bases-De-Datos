@@ -42,7 +42,7 @@ CREATE TABLE Persona (
   paterno nvarchar(255) NOT NULL,
   materno nvarchar(255) NOT NULL,
   genero nvarchar(255) NOT NULL,
-  fechaNacmiento date NOT NULL CHECK(DATEDIFF(year, fechaNacmiento, GETDATE()) > 18),
+  fechaNacimiento date NOT NULL CHECK(DATEDIFF(year, fechaNacimiento, GETDATE()) > 18),
   estado nvarchar(255) NOT NULL,
   municipio nvarchar(255) NOT NULL,
   CP int NOT NULL,
@@ -51,13 +51,13 @@ CREATE TABLE Persona (
   numExterno int NOT NULL,
   correoElectronico nvarchar(255),
 
-  tipoEmpleado nvarchar(255),
+  tipoEmpleado nvarchar(255) CHECK (tipoEmpleado IN ('Taquero', 'Tortillero', 'Parrillero', 'Mesero', 'Cajero', 'Repartidor')),
   RFC nvarchar(255),
   CURP nvarchar(255),
   fechaContratacion date,
   tipoSangre nvarchar(255),
   transporte nvarchar(255),
-  licencia int,
+  licencia nvarchar(255),
 
   puntos int,
 
@@ -65,7 +65,7 @@ CREATE TABLE Persona (
   esCliente int NOT NULL,
 
   idSucursal int,
-  CONSTRAINT tipoEmpleado_chk CHECK (tipoEmpleado IN ('Taquero', 'Tortillero', 'Parrillero', 'Mesero', 'Cajero', 'Repartidor')),
+  --CONSTRAINT tipoEmpleado_chk CHECK (tipoEmpleado IN ('Taquero', 'Tortillero', 'Parrillero', 'Mesero', 'Cajero', 'Repartidor')),
   CONSTRAINT sangre_chk CHECK (tipoSangre IN ('O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-')),
   CONSTRAINT esEmpleado_chk CHECK (esEmpleado = 1 OR esEmpleado = 0),
   CONSTRAINT esCliente_chk CHECK (esEmpleado = 1 OR esEmpleado = 0)
@@ -78,7 +78,7 @@ CREATE TABLE TipoEmpleado (
 
 CREATE TABLE TelefonoPersona (
   idPersona int NOT NULL,
-  telefono int NOT NULL
+  telefono nvarchar(255) NOT NULL
 )
 
 CREATE TABLE Bono (
@@ -100,7 +100,7 @@ CREATE TABLE Sucursal (
 
 CREATE TABLE TelefonoSucursal (
   idSucursal int NOT NULL,
-  telefono int NOT NULL
+  telefono nvarchar (255) NOT NULL
 )
 
 CREATE TABLE Proveedor (
@@ -117,7 +117,7 @@ CREATE TABLE Proveedor (
 
 CREATE TABLE TelefonoProveedor (
   idProveedor int NOT NULL,
-  telefono int NOT NULL
+  telefono nvarchar(255) NOT NULL
 )
 
 CREATE TABLE Proveer (
@@ -174,12 +174,12 @@ CREATE TABLE Recomendar (
 CREATE TABLE Platillo (
   idPlatillo int PRIMARY KEY IDENTITY(1, 1),
   nombre nvarchar(255) NOT NULL UNIQUE,
-  precio int NOT NULL
+  precio money NOT NULL
 )
 
 CREATE TABLE Salsa (
   idSalsa int PRIMARY KEY IDENTITY(1, 1),
-  nombre nvarchar(255) NOT NULL UNIQUE,
+  nombre nvarchar(255) NOT NULL,
   precio money NOT NULL,
   nivelPicor nvarchar(255) NOT NULL CHECK (nivelPicor IN('Bajo', 'Medio', 'Alto', 'Extremo')),
   presentacion nvarchar(255) NOT NULL CHECK (presentacion IN('Cuarto', 'Medio', 'Litro'))
@@ -189,7 +189,8 @@ CREATE TABLE Pedido (
   noTicket int PRIMARY KEY,
   costoTotal money NOT NULL,
   fecha date NOT NULL CHECK (fecha <= GETDATE()),
-  idPersona int NOT NULL
+  idPersona int NOT NULL,
+  idSucursal int NOT NULL
 )
 
 CREATE TABLE EstarPlatillo (
@@ -232,6 +233,7 @@ ALTER TABLE TenerSalsa ADD FOREIGN KEY (idProducto) REFERENCES Producto (idProdu
 
 ALTER TABLE TipoPago ADD FOREIGN KEY (noTicket) REFERENCES Pedido (noTicket)
 ALTER TABLE Pedido ADD FOREIGN KEY (idPersona) REFERENCES Persona (idPersona)
+ALTER TABLE Pedido ADD FOREIGN KEY (idSucursal) REFERENCES Sucursal (idSucursal)
 
 ALTER TABLE EstarSalsa ADD FOREIGN KEY (idSalsa) REFERENCES Salsa (idSalsa)
 ALTER TABLE EstarSalsa ADD FOREIGN KEY (noTicket) REFERENCES Pedido (noTicket)
