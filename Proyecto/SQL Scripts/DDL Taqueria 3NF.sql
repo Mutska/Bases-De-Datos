@@ -124,7 +124,7 @@ CREATE TABLE Proveer (
   idProveedor int,
   idSucursal int,
   monto money,
-  fechaPedido datetime,
+  fechaPedido date,
   PRIMARY KEY(idProveedor, idSucursal)
 )
 
