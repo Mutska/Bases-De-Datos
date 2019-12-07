@@ -65,7 +65,6 @@ CREATE TABLE Persona (
   esCliente int NOT NULL,
 
   idSucursal int,
-  --CONSTRAINT tipoEmpleado_chk CHECK (tipoEmpleado IN ('Taquero', 'Tortillero', 'Parrillero', 'Mesero', 'Cajero', 'Repartidor')),
   CONSTRAINT sangre_chk CHECK (tipoSangre IN ('O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-')),
   CONSTRAINT esEmpleado_chk CHECK (esEmpleado = 1 OR esEmpleado = 0),
   CONSTRAINT esCliente_chk CHECK (esCliente = 1 OR esCliente = 0)
@@ -231,7 +230,6 @@ ALTER TABLE TenerSalsa ADD FOREIGN KEY (idSalsa) REFERENCES Salsa (idSalsa)
 ALTER TABLE TenerPlatillo ADD FOREIGN KEY (idProducto) REFERENCES Producto (idProducto)
 ALTER TABLE TenerSalsa ADD FOREIGN KEY (idProducto) REFERENCES Producto (idProducto)
 
---ALTER TABLE TipoPago ADD FOREIGN KEY (noTicket) REFERENCES Pedido (noTicket)
 ALTER TABLE Pedido ADD FOREIGN KEY (noTicket) REFERENCES TipoPago (noTicket)
 ALTER TABLE Pedido ADD FOREIGN KEY (idPersona) REFERENCES Persona (idPersona)
 ALTER TABLE Pedido ADD FOREIGN KEY (idSucursal) REFERENCES Sucursal (idSucursal)
