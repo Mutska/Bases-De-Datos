@@ -8,13 +8,16 @@
  GROUP BY p.idSucursal, YEAR(p.fecha), DATEPART(qq, p.fecha), DATEPART(mm, p.fecha)
 
 
-/*
- * Consulta 2
- * Contar a los empleados de las sucursales, por tipo de empleado y por sucursal
- */
-SELECT p.idSucursal, p.tipoEmpleado, COUNT(p.idPersona) Empleado
-FROM Persona p
-GROUP BY p.idSucursal, p.tipoEmpleado
+ /*
+  * Consulta 2
+  * Ventas de salsas por y su nombre sucursal
+  */
+
+ SELECT p.idSucursal, s.nombre, COUNT(es.idSalsa) totalVendido
+ FROM Pedido p INNER JOIN EstarSalsa es ON es.noTicket = p.noTicket
+      INNER JOIN Salsa s ON s.idSalsa = es.idSalsa
+ GROUP BY p.idSucursal, s.nombre
+ ORDER BY p.idSucursal, COUNT(es.idSalsa) DESC
 
 
 /*
