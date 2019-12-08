@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--IDENTIFICADOR DEL PROYECTO-->
+    <groupId>taqueria20201</groupId>
+    <artifactId>taqueria20201</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <!--PROPIEDADES DEL PROYECTO-->
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+    <!-- ESPECIFIACIÓN DE BIBLIOTECAS PADRE-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.1.RELEASE</version>
+    </parent>
+    <!-- DEPENDENCIAS DEL PROYECTO-->
+    <dependencies>
+        <!-- DEPENDENCIA PARA CREAR PLATAFORMA PARA EJECTUAR PROYECTO-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- DEPENDENCIAS PARA GENERAR LAS RUTAS DE ACCESO-->
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- DEPENDENCIA PARA GENERAR LA PERSISTENCIA DE DATOS    -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!-- DEPENDENCIA QUE CONTIENE EL CONECTOR A SQL SERVER-->
+        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <!--PLUGINS DE LA APP-->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    <!-- REPOSITORIOS DE LAS DEPENDENCIAS-->
+    <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+    <!-- REPOSITORIOS DE LOS PLUGINS-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
