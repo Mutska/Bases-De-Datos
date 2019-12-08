@@ -9,5 +9,6 @@ CARPETA DE SCRIPTS   --> DDL.SQL --> ENTREGABLE
 
 CARPETA DE DOCUMENTOS  NORMALIZACICON  --> ENTREGABLE
 
-CARPETA DE DOCUMENTOS  REPORTE DE TRABAJO --> NO ENTREGABLE AUN https://es.overleaf.com/project/5deab936cb58f70001811a39 o https://es.overleaf.com/8159794631wbngngrnjtzc
+CARPETA DE DOCUMENTOS  REPORTE DE TRABAJO --> NO ENTREGABLE AUN https://es.overleaf.com/project/5deab936cb58f70001811a39 
+                                                              ó https://es.overleaf.com/8159794631wbngngrnjtzc
  

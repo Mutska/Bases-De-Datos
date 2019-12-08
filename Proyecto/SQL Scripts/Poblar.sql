@@ -7528,7 +7528,7 @@ insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, 
 insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, fechaCaducidad, idSucursal) values (709, 'Cebolla', '$198.74', 72, '22/12/2019', 'Stroman-McGlynn', '31/1/2020', 19);
 insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, fechaCaducidad, idSucursal) values (710, 'Chile', '$387.97', 79, '15/12/2019', 'Kris LLC', '8/1/2020', 19);
 insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, fechaCaducidad, idSucursal) values (711, 'Nopal', '$118.57', 73, '5/12/2019', 'Nicolas, Kris and Mitchell', '12/1/2020', 19);
-insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, fechaCaducidad, idSucursal) values (712, 'Jitomate', '$429.69', 82, '13/12/2019', 'Grady Group', '6/1/2020', 19);
+insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, fechaCaducidad, idSucursal) values (712, 'Jitomate', '$429.69', 82, '13/12/2019', 'Grady Group', '6/1/2020', 19); -- No entra por los constraints.
 insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, fechaCaducidad, idSucursal) values (713, 'Frijol', '$316.82', 107, '8/12/2019', 'Dibbert, Schuppe and Walsh', '4/1/2020', 19);
 insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, fechaCaducidad, idSucursal) values (714, 'Aguacate', '$459.60', 136, '4/12/2019', 'Ernser, Bergstrom and Howell', '15/1/2020', 19);
 insert into Producto (idProducto, nombre, precio, cantidad, fechaCompra, marca, fechaCaducidad, idSucursal) values (715, 'champinon', '$423.85', 103, '11/12/2019', 'Wilkinson and Sons', '14/1/2020', 19);
@@ -8528,7 +8528,7 @@ insert into Recomendar (idPlatillo, idSalsa) values (7, 78);
 insert into Recomendar (idPlatillo, idSalsa) values (45, 72);
 insert into Recomendar (idPlatillo, idSalsa) values (10, 39);
 insert into Recomendar (idPlatillo, idSalsa) values (18, 64);
-insert into Recomendar (idPlatillo, idSalsa) values (23, 8);
+insert into Recomendar (idPlatillo, idSalsa) values (23, 8); --No entra por constraints
 insert into Recomendar (idPlatillo, idSalsa) values (8, 38);
 insert into Recomendar (idPlatillo, idSalsa) values (46, 54);
 insert into Recomendar (idPlatillo, idSalsa) values (20, 120);
@@ -8560,7 +8560,7 @@ insert into Recomendar (idPlatillo, idSalsa) values (9, 30);
 insert into Recomendar (idPlatillo, idSalsa) values (43, 12);
 insert into Recomendar (idPlatillo, idSalsa) values (36, 100);
 insert into Recomendar (idPlatillo, idSalsa) values (45, 29);
-insert into Recomendar (idPlatillo, idSalsa) values (1, 0);
+insert into Recomendar (idPlatillo, idSalsa) values (1, 0); --No entra por Constraints
 insert into Recomendar (idPlatillo, idSalsa) values (28, 8);
 insert into Recomendar (idPlatillo, idSalsa) values (1, 115);
 insert into Recomendar (idPlatillo, idSalsa) values (24, 80);
@@ -12007,7 +12007,7 @@ insert into TenerSalsa (idSalsa, idProducto, cantidad) values (59, 64, 5);
 insert into TenerSalsa (idSalsa, idProducto, cantidad) values (60, 1070, 5);
 insert into TenerSalsa (idSalsa, idProducto, cantidad) values (60, 1141, 3);
 insert into TenerSalsa (idSalsa, idProducto, cantidad) values (60, 775, 4);
-insert into TenerSalsa (idSalsa, idProducto, cantidad) values (60, 1052, 4);
+insert into TenerSalsa (idSalsa, idProducto, cantidad) values (60, 1052, 4); --No entra por Constraints
 insert into TenerSalsa (idSalsa, idProducto, cantidad) values (61, 1180, 5);
 insert into TenerSalsa (idSalsa, idProducto, cantidad) values (61, 348, 3);
 insert into TenerSalsa (idSalsa, idProducto, cantidad) values (61, 473, 4);
